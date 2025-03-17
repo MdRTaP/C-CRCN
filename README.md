@@ -1,4 +1,4 @@
-#### Contrastive Clustering with Robust Continuous Embedding and Reliable Negative Sampling (C-CRCN)
+##### Contrastive Clustering with Robust Continuous Embedding and Reliable Negative Sampling (C-CRCN)
 
 In this work, we propose a novel framework Contrastive Clustering with Robust Continuous Embedding and Reliable Negative Sampling (C-CRCN) for PU learning from heterogeneous graph data with a focus on robust clustering and contrastive learning.The framework is designed to address the challenges of heterogeneous data analysis, especially in the context of positive-unlabeled (PU) learning. 
 
