@@ -33,6 +33,7 @@ def train_pretrained_representations():
 
         if epoch % 100 == 0:
             print(f'Epoch {epoch}, training loss：{pretrained_loss.item():.4f}')
+            
 def rcc_loss(X: torch.Tensor, U: torch.Tensor, edge_index: torch.Tensor, lambda_: float = 0.5,
                 gamma: float = 3.0) -> torch.Tensor:
     data_term = 0.5 * torch.sum((X - U) ** 2)
@@ -179,6 +180,7 @@ def train_network(epochs):
 
     torch.save(model.state_dict(), 'trained_model.pth')
     print('Model training is complete and weights have been saved to trained_model.pth')
+    
 def train_classifier(X_train , y_train):
     classifier = LogisticRegression()
     classifier.fit(X_train , y_train)
@@ -222,7 +224,8 @@ if __name__ == "__main__":
                         help='Dimension of output representations')
     args = parser.parse_args()
 
-    device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+    #device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+    device = torch.device('cuda') #if torch.cuda.is_available() else torch.device('cpu')
 
     # load pu dataset
     data = load_dataset(args.dataset)
