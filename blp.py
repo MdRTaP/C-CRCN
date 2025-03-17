@@ -31,7 +31,7 @@ class BLP(torch.nn.Module):
 def predict_unlabeled_nodes(p1, aux_h2, p2, aux_h1):
     loss1 = 2 - 2*cosine_similarity(p1, aux_h2, dim=-1).mean()
     loss2 = 2 - 2*cosine_similarity(p2, aux_h1, dim=-1).mean()
-    return (loss1 + loss2)/2         #对比学习的损失函数
+    return (loss1 + loss2)/2         
 
 
 
