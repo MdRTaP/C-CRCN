@@ -224,8 +224,7 @@ if __name__ == "__main__":
                         help='Dimension of output representations')
     args = parser.parse_args()
 
-    #device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
-    device = torch.device('cuda') #if torch.cuda.is_available() else torch.device('cpu')
+    device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
     # load pu dataset
     data = load_dataset(args.dataset)
