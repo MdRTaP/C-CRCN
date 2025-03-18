@@ -33,7 +33,6 @@ def train_pretrained_representations():
 
         if epoch % 100 == 0:
             print(f'Epoch {epoch}, training loss：{pretrained_loss.item():.4f}')
-            
 def rcc_loss(X: torch.Tensor, U: torch.Tensor, edge_index: torch.Tensor, lambda_: float = 0.5,
                 gamma: float = 3.0) -> torch.Tensor:
     data_term = 0.5 * torch.sum((X - U) ** 2)
@@ -180,7 +179,6 @@ def train_network(epochs):
 
     torch.save(model.state_dict(), 'trained_model.pth')
     print('Model training is complete and weights have been saved to trained_model.pth')
-    
 def train_classifier(X_train , y_train):
     classifier = LogisticRegression()
     classifier.fit(X_train , y_train)
@@ -284,12 +282,12 @@ if __name__ == "__main__":
     p2,_ = model(g2,g1)
 
     # Dynamic Clustering and Positive Sample Segmentation
-    p1_pretrained_final_labeled_positive = p1[positive_nodes]
-    p2_pretrained_final_labeled_positive = p2[positive_nodes]
-    RCC_p1_trained = RCCModel(p1_pretrained_final_labeled_positive)
-    RCC_p2_trained = RCCModel(p2_pretrained_final_labeled_positive)
-    labels_p1, silhouette_avg_p1,p1_cluster_centers, losses = train_rcc(RCC_p1_trained, p1_pretrained_final_labeled_positive, rcc_loss, delta=10)
-    labels_p2, silhouette_avg_p2,p2_cluster_centers, losses = train_rcc(RCC_p2_trained, p2_pretrained_final_labeled_positive, rcc_loss, delta=10)
+    p1_trained_final_labeled_positive = p1[positive_nodes]
+    p2_trained_final_labeled_positive = p2[positive_nodes]
+    RCC_p1_trained = RCCModel(p1_trained_final_labeled_positive)
+    RCC_p2_trained = RCCModel(p2_trained_final_labeled_positive)
+    labels_p1, silhouette_avg_p1,p1_cluster_centers, losses = train_rcc(RCC_p1_trained, p1_trained_final_labeled_positive, rcc_loss, delta=10)
+    labels_p2, silhouette_avg_p2,p2_cluster_centers, losses = train_rcc(RCC_p2_trained, p2_trained_final_labeled_positive, rcc_loss, delta=10)
     p1_n_clusters = len(set(labels_p1))
     p2_n_clusters = len(set(labels_p2))
 
