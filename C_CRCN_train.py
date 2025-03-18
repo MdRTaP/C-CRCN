@@ -249,8 +249,7 @@ if __name__ == "__main__":
 
 
     # Contrast Pre-Training
-    train_pretrained_representations()
-
+    '''train_pretrained_representations()
     model.eval()
     with torch.no_grad():
         g1,g2=augment_1(data),augment_2(data)
@@ -272,7 +271,7 @@ if __name__ == "__main__":
     plt.ylabel('t-SNE Component 2')
     plt.legend()
     plt.grid(True)
-    plt.show()
+    plt.show()'''
 
     # Joint Optimization Phase
     train_network(epochs=5000)
@@ -286,8 +285,8 @@ if __name__ == "__main__":
     p2_trained_final_labeled_positive = p2[positive_nodes]
     RCC_p1_trained = RCCModel(p1_trained_final_labeled_positive)
     RCC_p2_trained = RCCModel(p2_trained_final_labeled_positive)
-    labels_p1, silhouette_avg_p1,p1_cluster_centers, losses = train_rcc(RCC_p1_trained, p1_trained_final_labeled_positive, rcc_loss, delta=10)
-    labels_p2, silhouette_avg_p2,p2_cluster_centers, losses = train_rcc(RCC_p2_trained, p2_trained_final_labeled_positive, rcc_loss, delta=10)
+    labels_p1, silhouette_avg_p1,p1_cluster_centers = get_cluster_labels(RCC_p1_trained.get_representatives(),10)
+    labels_p2, silhouette_avg_p2,p2_cluster_centers = get_cluster_labels(RCC_p2_trained.get_representatives(), 10)
     p1_n_clusters = len(set(labels_p1))
     p2_n_clusters = len(set(labels_p2))
 
